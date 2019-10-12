@@ -5,7 +5,9 @@
  */
 package primoserver;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
@@ -32,8 +34,10 @@ public class PrimoServer {
             for (;;) {
                 Socket s;
                 s = ss.accept();
-                int i =s.getInputStream().read();
-                System.out.println("Il server ha ricevuto: " + i );
+                // int i =s.getInputStream().read();
+                InputStreamReader isr= new InputStreamReader(s.getInputStream());
+                BufferedReader br = new BufferedReader(isr);
+                System.out.println("Il server ha ricevuto: " + br.readLine() );
                 s.close();
             }
         } catch (IOException ex) {
