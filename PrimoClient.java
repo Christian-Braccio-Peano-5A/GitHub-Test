@@ -6,6 +6,7 @@
 package primoclient;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +27,10 @@ public class PrimoClient {
             // Invio un numero
 
             Socket s = new Socket("localhost",6666);
+            //////////
+            PrintWriter pw = new PrintWriter (s.getOutputStream(),true);
+            pw.println("Sono il client");
+            //////////
             s.getOutputStream().write(66);
             s.close();
         } catch (IOException ex) {
